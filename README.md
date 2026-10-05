@@ -1,19 +1,40 @@
-# Colour-invariant saree design recognition
+# Saree Design Recognition & Retrieval
 
-Pipeline: pretrained timm backbone -> 256-d L2-normalised embedding. Trained with ArcFace (design id as class) +
-colour-consistency loss between two colour-randomised views. Retrieval = cosine similarity.
+A deep learning-based computer vision project for **recognizing and retrieving visually similar saree designs** while reducing the influence of saree colour and focusing more on the underlying design, motifs, and patterns.
 
-Run order
-1. `pip install -r requirements.txt`
-2. Put data as `data/<dataset>/<design_id>/<images>` (data is NOT included or redistributed).
-3. `python train.py --roots data/deeplure data/kaggle --epochs 15 --out runs/exp1`
-4. `python evaluate.py --run runs/exp1`                          # trained model, held-out designs
-5. `python evaluate.py --run runs/exp1 --baseline mobilenetv3_large_100`   # frozen ImageNet baseline
-6. `python efficiency.py --ckpt runs/exp1/best.pt`
-7. `python infer.py search --ckpt runs/exp1/best.pt --query q.jpg --gallery data/deeplure`
+The system allows a user to provide a query saree and retrieves similar designs from a gallery using **feature embeddings and cosine similarity**. A similarity threshold can be adjusted to control how closely the retrieved designs should match the query.
 
-Disclosures: timm ImageNet-pretrained backbone; datasets = DeepLure corpus + Kaggle "Indian Saree Patterns".
+### Key Features
 
-## Visual demo (no install)
-Open `demo/index.html` in a browser (or VS Code "Live Server"). It is an illustration with simulated scores
-showing colour-invariant vs colour-sensitive retrieval; real results come from `evaluate.py`.
+* Saree design and motif recognition
+* Colour-invariant design retrieval
+* Feature-based image similarity
+* Cosine similarity ranking
+* Configurable similarity threshold
+* Interactive saree retrieval interface
+* Gallery-based visual search
+
+### How It Works
+
+1. A saree image is provided as the query.
+2. Visual features representing its design and motifs are extracted.
+3. The query representation is compared with saree representations in the gallery.
+4. Cosine similarity is calculated between the feature representations.
+5. The gallery is ranked according to similarity.
+6. Designs above the selected similarity threshold are considered relevant matches.
+
+### Tech Stack
+
+* Python
+* Computer Vision
+* Deep Learning
+* Image Feature Extraction
+* Cosine Similarity
+* HTML/CSS/JavaScript
+* Netlify
+
+### Use Cases
+
+This project can be used for **fashion image search, saree catalog management, e-commerce recommendation systems, traditional textile classification, and visual similarity search**.
+
+> Note: The hosted interface is an interactive illustration of the intended retrieval behaviour. Actual model evaluation and numerical results are generated through the project's evaluation pipeline.
