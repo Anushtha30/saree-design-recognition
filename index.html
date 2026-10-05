@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Saree colour-invariant retrieval demo</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Colour-invariant saree retrieval (illustration)</h1>
+<h2 class="sr-only">Interactive illustration of saree design retrieval</h2>
+<div style="display:flex;flex-wrap:wrap;gap:16px;margin:0 0 14px">
+  <div><p class="lbl">Query motif</p><div class="seg" id="mSeg"></div></div>
+  <div><p class="lbl">Query palette</p><div class="seg" id="pSeg"></div></div>
+  <div><p class="lbl">Model</p><div class="seg" id="modeSeg"></div></div>
+</div>
+<div style="display:flex;align-items:center;gap:10px;margin:0 0 14px">
+  <span class="lbl" style="margin:0">Same-design threshold</span>
+  <input type="range" id="thr" min="0.2" max="0.9" step="0.05" value="0.5" style="flex:1;max-width:240px">
+  <span id="thrOut" style="font-size:13px;font-weight:500">0.50</span>
+</div>
+<div style="display:grid;grid-template-columns:minmax(0,150px) minmax(0,1fr);gap:16px;align-items:start">
+  <div><p class="lbl">Query</p><div class="tile" id="q"></div></div>
+  <div><p class="lbl">Gallery ranked by cosine similarity</p><div id="grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(88px,1fr));gap:8px"></div></div>
+</div>
+<p id="sum" style="font-size:13px;color:var(--text-secondary);margin:12px 0 0"></p>
+<p style="font-size:11px;color:var(--text-muted);margin:6px 0 0">Illustration only: scores are simulated to show the intended behaviour. Real numbers come from evaluate.py.</p>
+<script src="app.js"></script>
+</body>
+</html>
